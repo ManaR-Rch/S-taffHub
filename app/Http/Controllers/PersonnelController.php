@@ -135,5 +135,16 @@ class PersonnelController extends Controller
             ->with('success', 'Membre du personnel supprimé avec succès.');
     }
 
+       /**
+     * Afficher les détails d'un membre du personnel
+     *
+     * @param  \App\Models\Personnel  $personnel
+     * @return \Illuminate\View\View
+     */
+    public function show(Personnel $personnel)
+    {
+        return view('personnel.show', compact('personnel'));
+    }
+
   
 } 
