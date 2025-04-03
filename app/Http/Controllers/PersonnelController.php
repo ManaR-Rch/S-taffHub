@@ -121,5 +121,19 @@ class PersonnelController extends Controller
         return redirect()->route('personnel.index')
             ->with('success', 'Membre du personnel mis à jour avec succès.');
     }
+
+        /**
+     * Supprimer un membre du personnel
+     *
+     * @param  \App\Models\Personnel  $personnel
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Personnel $personnel)
+    {
+        $personnel->delete();
+        return redirect()->route('personnel.index')
+            ->with('success', 'Membre du personnel supprimé avec succès.');
+    }
+
   
 } 
