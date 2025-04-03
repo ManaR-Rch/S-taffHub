@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Personnel;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use App\Mail\EmployeeWelcomeMail;
+use Illuminate\Support\Facades\Log;
+use App\Mail\NouveauMembreMail;
+
+class PersonnelController extends Controller
+{
+
+  
+} 
