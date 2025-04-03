@@ -94,5 +94,32 @@ class PersonnelController extends Controller
     {
         return view('personnel.edit', compact('personnel'));
     }
+
+       /**
+     * Mettre à jour un membre du personnel
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Personnel  $personnel
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, Personnel $personnel)
+    {
+        $validated = $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|unique:personnels,email,' . $personnel->id,
+            'telephone' => 'nullable|string|max:20',
+            'poste' => 'required|string|max:255',
+            'departement' => 'required|string|max:255',
+            'salaire_base' => 'required|numeric|min:0',
+            'date_embauche' => 'required|date',
+            'statut' => 'required|in:actif,inactif',
+        ]);
+
+        $personnel->update($validated);
+
+        return redirect()->route('personnel.index')
+            ->with('success', 'Membre du personnel mis à jour avec succès.');
+    }
   
 } 
