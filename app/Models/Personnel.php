@@ -39,7 +39,8 @@ class Personnel extends Model
      * @var array<string, string>
      */
     protected $casts = [
-     
+        'date_embauche' => 'date',
+        'salaire_base' => 'decimal:2',
     ];
 
     /**
