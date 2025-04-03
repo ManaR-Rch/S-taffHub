@@ -27,5 +27,15 @@ class PersonnelController extends Controller
         return view('personnel.index', compact('personnel'));
     }
 
+        /**
+     * Afficher le formulaire de création
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('personnel.create');
+    }
+
   
 } 
