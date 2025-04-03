@@ -82,5 +82,17 @@ class PersonnelController extends Controller
         return redirect()->route('personnel.index')
             ->with('success', 'Membre du personnel créé avec succès. Un email a été envoyé avec les identifiants.');
     }
+
+
+       /**
+     * Afficher le formulaire d'édition
+     *
+     * @param  \App\Models\Personnel  $personnel
+     * @return \Illuminate\View\View
+     */
+    public function edit(Personnel $personnel)
+    {
+        return view('personnel.edit', compact('personnel'));
+    }
   
 } 
