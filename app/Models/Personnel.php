@@ -22,7 +22,15 @@ class Personnel extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-  
+        'nom',
+        'prenom',
+        'email',
+        'telephone',
+        'poste',
+        'departement',
+        'salaire_base',
+        'date_embauche',
+        'statut',
     ];
 
     /**
