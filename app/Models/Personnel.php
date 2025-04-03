@@ -27,6 +27,9 @@ class Personnel extends Model
         'email',
         'telephone',
         'poste',
+        'departement',
+        'salaire_base',
+        'date_embauche',
         'statut',
     ];
 
