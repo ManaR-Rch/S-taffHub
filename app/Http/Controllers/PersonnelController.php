@@ -16,6 +16,16 @@ use App\Mail\NouveauMembreMail;
 
 class PersonnelController extends Controller
 {
+       /**
+     * Afficher la liste du personnel
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $personnel = Personnel::all();
+        return view('personnel.index', compact('personnel'));
+    }
 
   
 } 
