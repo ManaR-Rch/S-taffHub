@@ -90,6 +90,29 @@
             </div>
         </div>
     </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginBtn = document.getElementById('login-btn');
+            
+            loginBtn.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.02)';
+            });
+            
+            loginBtn.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('ring-2', 'ring-blue-200');
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('ring-2', 'ring-blue-200');
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
