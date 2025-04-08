@@ -94,13 +94,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const loginBtn = document.getElementById('login-btn');
             
-            loginBtn.addEventListener('mouseover', function() {
-                this.style.transform = 'scale(1.02)';
-            });
-            
-            loginBtn.addEventListener('mouseout', function() {
-                this.style.transform = 'scale(1)';
-            });
+    
             
             const inputs = document.querySelectorAll('input');
             inputs.forEach(input => {
