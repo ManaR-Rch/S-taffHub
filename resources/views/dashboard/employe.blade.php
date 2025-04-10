@@ -169,6 +169,25 @@
         </main>
     </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.bg-white.shadow');
+            
+            
+           
+            const taskItems = document.querySelectorAll('li.py-3');
+            
+            taskItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-10px)';
+                item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 300 + (index * 100));
+            });
+        });
+    </script>
 </body>
 </html> 
