@@ -173,6 +173,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.bg-white.shadow');
             
+            cards.forEach(card => {
+                card.addEventListener('mouseover', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseout', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
             
            
             const taskItems = document.querySelectorAll('li.py-3');
