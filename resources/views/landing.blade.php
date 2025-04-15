@@ -61,7 +61,7 @@
     </div>
 
     <script>
-        // Animation simple au survol du bouton
+        
         document.addEventListener('DOMContentLoaded', function() {
             const loginBtn = document.getElementById('login-btn');
             
@@ -73,11 +73,8 @@
                 this.style.transform = 'scale(1)';
             });
             
-            // Animation des éléments au chargement
-            const elements = document.querySelectorAll('.slide-up');
-            elements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.2}s`;
-            });
+      
+         
         });
     </script>
 </body>
