@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
        
+      \Log::info('Début du seeding de la base de données');
 
         $rh = User::create([
             'nom' => 'Admin RH',
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'rh',
         ]);
 
-
+        \Log::info('Utilisateur RH créé avec l\'ID : ' . $rh->id);
 
         $employe = User::create([
             'nom' => 'Employé Test',
