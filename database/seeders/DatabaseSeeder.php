@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
             'role' => 'employe',
         ]);
 
+        \Log::info('Utilisateur Employé créé : ' . $employe->id);
+
+
        
     }    
 }
