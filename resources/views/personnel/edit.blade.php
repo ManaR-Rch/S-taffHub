@@ -98,7 +98,24 @@
     </div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('scale-105');
+            this.classList.add('ring-2');
+        });
 
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('scale-105');
+            if (!this.value) {
+                this.classList.remove('ring-2');
+            }
+        });
+    });
+});
+</script>
 
 <style>
 .scale-105 {
