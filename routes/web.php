@@ -25,3 +25,22 @@ Route::middleware('guest')->group(function () {
   Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
   Route::post('/login', [AuthController::class, 'login']);
 });
+
+Route::middleware('auth')->group(function () {
+  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+  
+  Route::middleware('is_rh')->group(function () {
+      Route::get('/dashboard/rh', function () {
+          return view('dashboard.rh');
+      })->name('dashboard.rh');
+
+      Route::resource('personnel', PersonnelController::class);
+      Route::resource('jobs', JobController::class);
+  });
+
+  Route::get('/dashboard/employe', function () {
+      return view('dashboard.employe');
+  })->name('dashboard.employe');
+
+  Route::get('/profile', [EmployeProfileController::class, 'show'])->name('employe.profile');
+});
