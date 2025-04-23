@@ -38,5 +38,4 @@ class NouveauMembreMail extends Mailable
             ],
         );
     }
- 
 } 
