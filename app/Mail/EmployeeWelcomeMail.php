@@ -10,5 +10,17 @@ use Illuminate\Queue\SerializesModels;
 
 class EmployeeWelcomeMail extends Mailable
 {
-   
+    use Queueable, SerializesModels;
+
+    public $employee;
+    public $password;
+
+    /**
+     * Create a new message instance.
+     */
+    public function __construct($employee, $password)
+    {
+        $this->employee = $employee;
+        $this->password = $password;
+    }
 } 
