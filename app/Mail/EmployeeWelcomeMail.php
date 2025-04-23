@@ -23,4 +23,15 @@ class EmployeeWelcomeMail extends Mailable
         $this->employee = $employee;
         $this->password = $password;
     }
+
+
+        /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
+    {
+        return new Envelope(
+            subject: 'Bienvenue sur StaffHub - Vos informations de connexion',
+        );
+    }
 } 
