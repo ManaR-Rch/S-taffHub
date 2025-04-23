@@ -34,4 +34,19 @@ class EmployeeWelcomeMail extends Mailable
             subject: 'Bienvenue sur StaffHub - Vos informations de connexion',
         );
     }
+
+
+        /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.employee-welcome',
+            with: [
+                'employee' => $this->employee,
+                'password' => $this->password,
+            ],
+        );
+    }
 } 
