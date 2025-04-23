@@ -25,5 +25,18 @@ class NouveauMembreMail extends Mailable
             subject: 'Bienvenue sur StaffHub - Vos identifiants de connexion',
         );
     }
+
+    public function content(): Content
+    {
+        return new Content(
+            view: 'emails.nouveau-membre',
+            with: [
+                'nom' => $this->data['nom'],
+                'prenom' => $this->data['prenom'],
+                'email' => $this->data['email'],
+                'password' => $this->data['password']
+            ],
+        );
+    }
  
 } 
