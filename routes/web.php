@@ -43,4 +43,24 @@ Route::middleware('auth')->group(function () {
   })->name('dashboard.employe');
 
   Route::get('/profile', [EmployeProfileController::class, 'show'])->name('employe.profile');
+
+  Route::get('/test-email', function () {
+    try {
+       
+        $config = config('mail');
+        
+        \Illuminate\Support\Facades\Mail::raw('Test d\'envoi d\'email avec Gmail', function($message) {
+            $message->to('manarmarchou6@gmail.com')
+                   ->subject('Test StaffHub - Configuration Gmail');
+        });
+        
+  
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Erreur : ' . $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
+
 });
