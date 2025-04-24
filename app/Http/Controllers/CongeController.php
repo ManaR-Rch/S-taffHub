@@ -7,16 +7,19 @@ use Illuminate\Http\Request;
 
 class CongeController extends Controller
 {
+    
     public function index()
     {
         $conges = auth()->user()->conges()->latest()->get();
         return view('conges.index', compact('conges'));
     }
 
+ 
     public function adminIndex(Request $request)
     {
         $query = Conge::with('user')->latest();
 
+        // Filtres
         if ($request->has('user_id')) {
             $query->where('user_id', $request->user_id);
         }
@@ -73,6 +76,27 @@ class CongeController extends Controller
             'commentaire_rh' => 'nullable|string|max:500',
         ]);
 
+       
+        if ($validated['statut'] === 'accepte') {
+            $duree = $conge->date_debut->diffInDays($conge->date_fin) + 1;
+            $solde = $conge->user->soldeConge;
+            
+          
+            if ($conge->type === 'annuel' && $solde->solde_annuel < $duree) {
+                return back()->with('error', 'Le solde de congés annuels est insuffisant.');
+            }
+            if ($conge->type === 'exceptionnel' && $solde->solde_exceptionnel < $duree) {
+                return back()->with('error', 'Le solde de congés exceptionnels est insuffisant.');
+            }
+            if ($conge->type === 'maladie' && $solde->solde_maladie < $duree) {
+                return back()->with('error', 'Le solde de congés maladie est insuffisant.');
+            }
 
+            $solde->updateSolde($conge->type, -$duree);
+        }
+
+        $conge->update($validated);
+
+        return back()->with('success', 'Le statut de la demande a été mis à jour.');
     }
 } 
