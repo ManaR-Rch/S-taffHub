@@ -8,6 +8,8 @@ use App\Http\Controllers\EmployeProfileController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Middleware\IsRH;
+use App\Http\Controllers\CongeController;
+use App\Http\Controllers\SoldeCongeController;
 
 Route::aliasMiddleware('is_rh', IsRH::class);
 
@@ -28,6 +30,11 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
+    Route::get('/conges', [CongeController::class, 'index'])->name('conges.index');
+    Route::get('/conges/create', [CongeController::class, 'create'])->name('conges.create');
+    Route::post('/conges', [CongeController::class, 'store'])->name('conges.store');
+    Route::get('/conges/solde', [SoldeCongeController::class, 'show'])->name('conges.solde');
+    
     Route::middleware('is_rh')->group(function () {
         Route::get('/dashboard/rh', function () {
             return view('dashboard.rh');
@@ -35,6 +42,17 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('personnel', PersonnelController::class);
         Route::resource('jobs', JobController::class);
+        
+  
+        Route::get('/conges/admin', [CongeController::class, 'adminIndex'])->name('conges.admin');
+        Route::put('/conges/{conge}/status', [CongeController::class, 'updateStatus'])->name('conges.update-status');
+        
+ 
+        Route::get('/conges/soldes', [SoldeCongeController::class, 'adminIndex'])->name('conges.admin-solde');
+        Route::get('/conges/soldes/create/{user}', [SoldeCongeController::class, 'create'])->name('conges.create-solde');
+        Route::post('/conges/soldes/{user}', [SoldeCongeController::class, 'store'])->name('conges.store-solde');
+        Route::get('/conges/soldes/{solde}/edit', [SoldeCongeController::class, 'edit'])->name('conges.edit-solde');
+        Route::put('/conges/soldes/{solde}', [SoldeCongeController::class, 'update'])->name('conges.update-solde');
     });
 
     Route::get('/dashboard/employe', function () {
