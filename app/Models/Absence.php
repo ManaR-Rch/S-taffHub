@@ -20,7 +20,6 @@ class Absence extends Model
         'commentaire_rh'
     ];
 
-
     protected $casts = [
         'date_debut' => 'date',
         'date_fin' => 'date',
@@ -35,5 +34,21 @@ class Absence extends Model
     public function getDureeAttribute()
     {
         return $this->date_debut->diffInDays($this->date_fin) + 1;
+    }
+
+    public function getMotifLibelleAttribute()
+    {
+        return match($this->motif) {
+            'maladie' => 'Maladie',
+            'accident' => 'Accident',
+            'retard' => 'Retard',
+            'autre' => 'Autre',
+            default => $this->motif
+        };
+    }
+
+    public function getStatutAttribute()
+    {
+        return $this->justifie ? 'Justifié' : 'Non justifié';
     }
 } 
