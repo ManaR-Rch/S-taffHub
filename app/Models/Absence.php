@@ -21,4 +21,19 @@ class Absence extends Model
     ];
 
 
+    protected $casts = [
+        'date_debut' => 'date',
+        'date_fin' => 'date',
+        'justifie' => 'boolean',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getDureeAttribute()
+    {
+        return $this->date_debut->diffInDays($this->date_fin) + 1;
+    }
 } 
